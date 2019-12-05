@@ -24,7 +24,7 @@ if (process.env.MODE !== 'ssr') {
 	routes.push({
 		path: '*',
 		component: MainLayout,
-		children: [{ path: '', component: () => import('pages/Error404.vue') }]
+		children: [{ path: '', name: '404 Page Not Found', component: () => import('pages/Error404.vue') }]
 	});
 }
 
