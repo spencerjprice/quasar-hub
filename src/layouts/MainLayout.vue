@@ -46,7 +46,7 @@
 							:class="{ active: routePath === sublink.url }"
 							clickable
 							tag="a"
-							:href="sublink.url"
+							:to="sublink.url"
 						>
 							<q-item-section avatar>
 								<q-icon :name="sublink.icon" color="primary" />
@@ -57,7 +57,7 @@
 						</q-item>
 					</q-expansion-item>
 					<!-- Otherwise show a normal link -->
-					<q-item v-else :class="{ active: routePath === link.url }" clickable tag="a" :href="link.url">
+					<q-item v-else :class="{ active: routePath.toString() === link.url.toString() }" clickable tag="a" :to="link.url">
 						<q-item-section avatar>
 							<q-icon :name="link.icon" color="primary" />
 						</q-item-section>
@@ -66,6 +66,16 @@
 						</q-item-section>
 					</q-item>
 				</div>
+
+				<q-separator />
+				<q-item>
+					<q-item-section avatar>
+						<q-icon name="fas fa-biohazard" :color="pagesVisited ? 'secondary' : 'accent'" />
+					</q-item-section>
+					<q-item-section>
+						<q-item-label>{{ pagesVisited ? 'SPA Page' : 'SSR Page' }}</q-item-label>
+					</q-item-section>
+				</q-item>
 			</q-list>
 		</q-drawer>
 
@@ -104,7 +114,8 @@ export default {
 				{ url: '/executive', icon: 'fas fa-compass', name: 'Exec', color: 'blue' },
 				{ url: '/bt', icon: 'fab fa-pied-piper-hat', name: 'Business Technology', color: 'light-blue' },
 				{ url: '/logistics', icon: 'fas fa-chart-bar', name: 'Logistics', color: 'cyan' }
-			]
+			],
+			pagesVisited: 0
 		};
 	},
 	components: {
@@ -116,6 +127,11 @@ export default {
 		},
 		routePath() {
 			return this.$route.path;
+		}
+	},
+	watch: {
+		$route() {
+			++this.pagesVisited;
 		}
 	}
 };

@@ -24,7 +24,7 @@ export default {
 			const BASE_URL = '//api.giphy.com/v1/gifs/random?';
 			const API_KEY = 'eaa99PCLn9YA7skAuKyGY8PQFSsdhFAR';
 			const LIMIT = 1;
-			const SEARCH = 'vaporwave';
+			const SEARCH = 'wipeout fail';
 			const RATING = 'pg';
 
 			this.$axios.get(BASE_URL + 'tag=' + SEARCH + '&limit=' + LIMIT + '&rating=' + RATING + '&api_key=' + API_KEY).then(response => {
