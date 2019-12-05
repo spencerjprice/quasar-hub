@@ -27,7 +27,7 @@
 				<q-separator />
 
 				<!-- Loop through all of the links for the drawer -->
-				<div v-for="link in drawerLinks" :key="link">
+				<div v-for="link in drawerLinks" :key="link.url">
 					<!-- Show a dropdown item if it is one -->
 					<q-expansion-item v-if="link.sublinks" :content-inset-level="0.5">
 						<template v-slot:header>
@@ -70,7 +70,7 @@
 		</q-drawer>
 
 		<q-page-container>
-			<router-view />
+			<router-view :key="$route.path" />
 		</q-page-container>
 	</q-layout>
 </template>
@@ -85,7 +85,16 @@ export default {
 			leftDrawerOpen: false,
 			drawerLinks: [
 				{ url: '/', icon: 'fas fa-home', name: 'Home', color: 'red' },
-				{ url: '/tickets', icon: 'fas fa-ticket-alt', name: 'Tickets', color: 'pink' },
+				{
+					url: '/tickets',
+					icon: 'fas fa-wrench',
+					name: 'Support Tickets',
+					color: 'pink',
+					sublinks: [
+						{ url: '/tickets', icon: 'fas fa-ticket-alt', name: 'Submit a Ticket' },
+						{ url: '/tickets', icon: 'fas fa-tools', name: 'Manage Tickets' }
+					]
+				},
 				{
 					url: '/employee',
 					icon: 'fas fa-user',

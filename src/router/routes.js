@@ -1,13 +1,21 @@
+import MainLayout from 'layouts/MainLayout';
+import Tickets from 'pages/Tickets';
+
 const routes = [
 	{
 		path: '/',
-		component: () => import('layouts/MainLayout.vue'),
+		component: MainLayout,
 		children: [{ path: '', name: 'Homepage', component: () => import('pages/Index.vue') }]
 	},
 	{
 		path: '/account',
-		component: () => import('layouts/MainLayout.vue'),
+		component: MainLayout,
 		children: [{ path: '', name: 'Account', component: () => import('pages/Account.vue') }]
+	},
+	{
+		path: '/tickets',
+		component: MainLayout,
+		children: [{ path: '', name: 'Tickets', component: Tickets }]
 	}
 ];
 
@@ -15,7 +23,7 @@ const routes = [
 if (process.env.MODE !== 'ssr') {
 	routes.push({
 		path: '*',
-		component: () => import('layouts/MainLayout.vue'),
+		component: MainLayout,
 		children: [{ path: '', component: () => import('pages/Error404.vue') }]
 	});
 }

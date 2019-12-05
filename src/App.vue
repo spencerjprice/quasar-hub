@@ -1,6 +1,6 @@
 <template>
 	<div id="q-app">
-		<router-view />
+		<router-view key="app-router-view" />
 	</div>
 </template>
 
@@ -8,7 +8,7 @@
 export default {
 	name: 'App',
 	created() {
-		this.$q.dark.set(true);
+		// this.$q.dark.set(false);
 	}
 };
 </script>
