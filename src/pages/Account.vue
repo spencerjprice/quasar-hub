@@ -87,6 +87,33 @@ export default {
 						{ value: 'accent', hex: '#ffffff' },
 						{ value: 'dark', hex: '#282a36' }
 					]
+				},
+				{
+					name: 'Python',
+					colors: [
+						{ value: 'primary', hex: '#FFD43B' },
+						{ value: 'secondary', hex: '#FFE873' },
+						{ value: 'accent', hex: '#F4F4F4' },
+						{ value: 'dark', hex: '#306998' }
+					]
+				},
+				{
+					name: 'Retro',
+					colors: [
+						{ value: 'primary', hex: '#00ff00' },
+						{ value: 'secondary', hex: '#006600' },
+						{ value: 'accent', hex: '#ff0000' },
+						{ value: 'dark', hex: '#000000' }
+					]
+				},
+				{
+					name: 'Hyperion',
+					colors: [
+						{ value: 'primary', hex: '#eef2ff' },
+						{ value: 'secondary', hex: '#d6daf0' },
+						{ value: 'accent', hex: '#000000' },
+						{ value: 'dark', hex: '#34345c' }
+					]
 				}
 			]
 		};
@@ -94,7 +121,10 @@ export default {
 	methods: {
 		onSubmit(newColors) {
 			console.log('yee');
-			newColors.forEach(color => colors.setBrand(color.value, color.hex));
+			newColors.forEach((color, index) => {
+				colors.setBrand(color.value, color.hex);
+				this.colors[index].hex = colors.getBrand(color.value);
+			});
 		}
 	}
 };
@@ -105,9 +135,11 @@ export default {
 	margin-bottom: 60px;
 	.cards {
 		display: flex;
+		flex-wrap: wrap;
 		.card {
 			cursor: pointer;
 			transition: all 200ms ease;
+			margin-bottom: 20px;
 			&__colors {
 				min-width: 200px;
 				border-radius: 10px;
